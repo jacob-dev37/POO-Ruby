@@ -1,9 +1,12 @@
 #Este programa es una lista de compras
+require 'rainbow'
+
 class Lista
     attr_accessor :elementos, :menu
     def initialize
         @articulos = []
         @menu = ["Ver", "Agregar", "Checkear", "Eliminar", "Vaciar", "Salir"]
+        @fucsia = "#FF1535"
     end
 
     def menu
@@ -11,7 +14,7 @@ class Lista
         @menu.each_with_index do |valor, indice|
             puts "#{indice + 1} - #{valor}"
         end
-        print "\nElige una opción: "
+        print Rainbow("\nElige una opción: ").color(@fucsia)
         opcion = gets.chomp.to_i
 
         #llamar a metodos
@@ -34,7 +37,7 @@ class Lista
     private
         def titulo
             system("clear")
-            puts "\nLista de compras"
+            puts Rainbow("\nLista de compras").color(@fucsia)
             puts "\n"
         end
 
@@ -100,7 +103,7 @@ class Lista
 
         def lista
             titulo
-            puts "Lista vacía" if @articulos.empty?
+            puts Rainbow("Lista vacía").red.blink if @articulos.empty?
             @articulos.each_with_index {|valor, indice| puts "#{indice + 1} #{valor}"}
             puts "\n"
         end
